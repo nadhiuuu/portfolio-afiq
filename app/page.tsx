@@ -1,8 +1,6 @@
 import HeroSection from "@/components/sections/hero-section";
 import DescriptionSection from "@/components/sections/about-section";
-import SportDesignSection from "@/components/sections/sport-design-section"
-import BrochureDesignSection from "@/components/sections/brochure-design-section";
-import LogoDesignSection from "@/components/sections/logo-design-section";
+import ProjectSection from "@/components/sections/project-section"
 import ContactSection from "@/components/sections/contact-section";
 
 export default function Home() {
@@ -10,9 +8,7 @@ export default function Home() {
     <main>
       <HeroSection />
       <DescriptionSection />
-      <SportDesignSection />
-      <BrochureDesignSection />
-      <LogoDesignSection />
+      <ProjectSection />
       <ContactSection />
     </main>
   );

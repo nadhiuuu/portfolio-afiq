@@ -1,79 +1,110 @@
 "use client";
+
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { useRef, MouseEvent } from "react";
 
 export default function HeroPortfolioSection() {
+  const containerRef = useRef<HTMLElement>(null);
+
+  const mouseX = useMotionValue(0.5);
+  const mouseY = useMotionValue(0.5);
+
+  const springConfig = { damping: 30, stiffness: 200 };
+  const smoothX = useSpring(mouseX, springConfig);
+  const smoothY = useSpring(mouseY, springConfig);
+
+  const imageX = useTransform(smoothX, [0, 1], ["-15px", "15px"]);
+  const imageY = useTransform(smoothY, [0, 1], ["-10px", "10px"]);
+
+  const textX = useTransform(smoothX, [0, 1], ["30px", "-30px"]);
+
+  const handleMouseMove = (e: MouseEvent) => {
+    if (!containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    mouseX.set((e.clientX - rect.left) / rect.width);
+    mouseY.set((e.clientY - rect.top) / rect.height);
+  };
+
+  const handleMouseLeave = () => {
+    mouseX.set(0.5);
+    mouseY.set(0.5);
+  };
+
   return (
-    <section className="relative h-[100dvh] w-full overflow-hidden bg-[#050505] text-white flex flex-col justify-between">
-      
-      <div className="absolute inset-0 z-0">
-        <div className="absolute top-[-12%] left-[-8%] w-[40vw] h-[40vw] bg-cyan-500/10 blur-[140px] rounded-full" />
-        <div className="absolute bottom-[8%] right-[-6%] w-[32vw] h-[32vw] bg-fuchsia-600/10 blur-[140px] rounded-full" />
-        <div className="absolute inset-0 opacity-[0.04] 
-          [background-image:linear-gradient(#333_1px,transparent_1px),linear-gradient(90deg,#333_1px,transparent_1px)] 
-          [background-size:50px_50px]" 
-        />
+    <section
+      ref={containerRef}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      className="relative h-[100svh] w-full overflow-hidden bg-[#05010a] text-white flex flex-col items-center"
+    >
+      {/* === Background === */}
+      <div className="absolute inset-0 pointer-events-none z-0">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_40%,rgba(20,2,42,1)_0%,rgba(5,1,10,1)_80%)] opacity-90" />
+
+        {/* Glow */}
+        <div className="absolute left-[10%] top-[15%] h-[50vw] w-[50vw] rounded-full bg-cyan-500/10 blur-[100px]" />
+        <div className="absolute right-[10%] bottom-[15%] h-[45vw] w-[45vw] rounded-full bg-fuchsia-600/10 blur-[110px]" />
       </div>
 
-      <div className="relative z-30 flex justify-between items-center px-6 md:px-12 pt-6">
-        <motion.h2 
-          initial={{ opacity: 0, x: -20 }} 
-          animate={{ opacity: 1, x: 0 }} 
-          className="text-base md:text-2xl font-extrabold italic text-cyan-400 tracking-tight"
-        >
+      {/* === Header === */}
+      <div className="relative z-30 w-full flex items-center justify-between px-5 pt-6 md:px-20 lg:pt-14">
+        <motion.h2 className="text-lg font-black italic tracking-tighter text-cyan-400 md:text-4xl lg:text-5xl">
           GRAPHIC
         </motion.h2>
-
-        <motion.h2 
-          initial={{ opacity: 0, x: 20 }} 
-          animate={{ opacity: 1, x: 0 }} 
-          className="text-base md:text-2xl font-extrabold italic text-fuchsia-500 tracking-tight"
-        >
+        <motion.h2 className="text-lg font-black italic tracking-tighter text-fuchsia-500 md:text-4xl lg:text-5xl">
           DESIGN
         </motion.h2>
       </div>
 
-      <div className="relative z-10 flex-1 flex items-center justify-center">
-
-        <h1 className="absolute text-[20vw] md:text-[18vw] font-black tracking-[-0.06em] opacity-[0.04] select-none">
-          PORTFOLIO
-        </h1>
-
-        <motion.div 
-          initial={{ y: 60, opacity: 0 }} 
-          animate={{ y: 0, opacity: 1 }} 
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="relative w-full max-w-[650px] flex items-end justify-center"
+      {/* === Main === */}
+      <div className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
+        
+        {/* Background Text */}
+        <motion.h1
+          style={{ x: textX }}
+          className="absolute w-full select-none text-center text-[22vw] md:text-[18vw] font-black tracking-[-0.08em] text-white/[0.03] leading-none"
         >
-          <div className="absolute bottom-14 w-[220px] h-[220px] md:w-[420px] md:h-[420px] bg-cyan-500/20 blur-[120px] rounded-full" />
+          PORTFOLIO
+        </motion.h1>
 
-          <div className="relative w-full h-[50vh] md:h-[65vh]">
+        {/* Profile */}
+        <motion.div
+          style={{ x: imageX, y: imageY }}
+          className="relative flex flex-col items-center justify-center pt-16 md:pt-20"
+        >
+          {/* Glow belakang foto */}
+          <div className="absolute h-[30vh] w-[30vh] md:h-[60vh] md:w-[60vh] rounded-full bg-cyan-400/10 blur-[100px] -z-10" />
+
+          {/* FOTO */}
+          <div className="relative w-[90vw] h-[50vh] sm:h-[55vh] md:w-[600px] md:h-[70vh] lg:h-[75vh]">
             <Image
-              src="/images/profile1.png"
+              src="/images/profile3.png"
               alt="Afiq Ilham"
               fill
               priority
-              className="object-contain object-bottom drop-shadow-[0_0_40px_rgba(0,255,255,0.25)]"
+              className="object-contain object-bottom translate-y-[10%] md:translate-y-[5%] drop-shadow-[0_0_50px_rgba(6,182,212,0.15)] z-10"
             />
           </div>
-        </motion.div>
-      </div>
 
-      <div className="relative z-30 w-full pb-8 flex justify-center">
-        <motion.div 
-          initial={{ y: 20, opacity: 0 }} 
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.2 }}
-          className="bg-white/5 backdrop-blur-md border border-white/10 px-5 md:px-7 py-2 rounded-full"
-        >
-          <span className="text-[10px] md:text-sm font-semibold tracking-[0.25em] uppercase">
-            Designed by{" "}
-            <span className="text-cyan-400 font-bold">
-              Afiq Ilham
-            </span>
-          </span>
+          {/* BADGE */}
+          <motion.div
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            className="mt-3 md:mt-0 pointer-events-auto z-20"
+          >
+            <div className="rounded-full border border-white/10 bg-black/80 px-4 py-2 md:px-10 md:py-3.5 backdrop-blur-xl shadow-2xl">
+              <span className="text-[9px] md:text-sm font-bold uppercase tracking-[0.35em] text-white/90 whitespace-nowrap">
+                Portfolio of{" "}
+                <span className="text-cyan-400 font-black">
+                  Afiq Ilham
+                </span>
+              </span>
+            </div>
+          </motion.div>
         </motion.div>
       </div>
+      <div className="absolute bottom-0 w-full h-24 bg-gradient-to-t from-[#05010a] to-transparent z-0" />
     </section>
   );
 }
