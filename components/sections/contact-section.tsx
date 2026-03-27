@@ -112,9 +112,7 @@ export default function ContactSection() {
       <div className="absolute bottom-6 md:bottom-8 w-full px-6 md:px-10 flex flex-col md:flex-row justify-between items-center gap-4 md:gap-3 opacity-30 text-[8px] md:text-[9px] font-bold tracking-[0.2em] md:tracking-[0.3em] uppercase border-t border-white/5 pt-6 md:pt-8">
         <p>© 2026 AFIQ ILHAM</p>
         <div className="flex gap-4 italic">
-          <span>Visual Solutions</span>
-          <span className="hidden md:inline text-white/20">|</span>
-          <span className="hidden md:inline">Graphic Design Archive</span>
+          <span>Graphic Design</span>
         </div>
       </div>
     </section>
