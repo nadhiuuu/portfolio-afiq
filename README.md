@@ -118,7 +118,7 @@ The app can be deployed to any platform supporting Next.js:
 **Afiq Ilham**
 - Instagram: [@afiqilhamm](https://instagram.com/afiqilhamm)
 - WhatsApp: [+62881026097808](https://wa.me/62881026097808)
-- Email: afiqilham@example.com
+- Email: muwafiqilham14@gmail.com
 
 ## 📄 License
 
