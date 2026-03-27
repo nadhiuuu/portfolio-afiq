@@ -44,7 +44,7 @@ export default function PortfolioSection() {
   return (
     <section className="relative min-h-screen w-full bg-[#05010a] text-white py-24 px-4 sm:px-10 overflow-hidden -mt-16 md:-mt-15">
       
-      {/* === Background & Grid Sync === */}
+      {/* Background */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <div className="absolute top-0 inset-x-0 h-40 bg-gradient-to-b from-[#05010a] via-[#05010a]/80 to-transparent z-10" />
         <div className="absolute inset-0 opacity-[0.03] 
@@ -54,18 +54,27 @@ export default function PortfolioSection() {
       </div>
 
       <div className="relative z-10 max-w-[1400px] mx-auto">
+        
+        {/* FIXED HEADING */}
         <div className="mb-16">
-          <motion.h3 className="text-4xl md:text-7xl font-[1000] italic leading-none tracking-tighter uppercase">
-           <h2 className="text-[10px] font-bold tracking-[0.5em] text-fuchsia-500 uppercase mb-4">
-              Selected Works
-            </h2>
-            <h3 className="text-4xl md:text-7xl font-[1000] italic leading-none tracking-tighter uppercase">
-              Creative <span className="text-cyan-400">Archive</span>
-            </h3>
+          <motion.h2
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            className="text-[10px] font-bold tracking-[0.5em] text-fuchsia-500 uppercase mb-4"
+          >
+            Selected Works
+          </motion.h2>
+
+          <motion.h3
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            className="text-4xl md:text-7xl font-[1000] italic leading-none tracking-tighter uppercase"
+          >
+            Design <span className="text-cyan-400">Project</span>
           </motion.h3>
         </div>
 
-        {/* === Grid Masonry === */}
+        {/* Grid */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 md:gap-4 auto-rows-[200px] md:auto-rows-[280px]">
           {projects.map((p, i) => (
             <motion.div
@@ -83,28 +92,26 @@ export default function PortfolioSection() {
               <img
                 src={p.img}
                 alt={p.title}
-                className="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-all duration-500 group-hover:scale-105"
+                className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors" />
             </motion.div>
           ))}
         </div>
       </div>
 
-      {/* === Lightbox Overlay === */}
+      {/* Lightbox */}
       <AnimatePresence>
         {selectedImg && (
           <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-10">
-            {/* Backdrop Hitam */}
+            
             <motion.div 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setSelectedImg(null)}
-              className="absolute inset-0 bg-black/95 backdrop-blur-md cursor-zoom-out"
+              className="absolute inset-0 cursor-zoom-out"
             />
 
-            {/* Gambar Full */}
             <motion.div 
               layoutId={`card-${selectedImg}`}
               className="relative z-10 max-w-full max-h-full flex items-center justify-center"
@@ -115,7 +122,6 @@ export default function PortfolioSection() {
                 className="rounded-lg shadow-2xl border border-white/10 object-contain max-h-[90svh]"
               />
               
-              {/* Tombol Close */}
               <button 
                 onClick={() => setSelectedImg(null)}
                 className="absolute -top-12 right-0 text-white/50 hover:text-white text-sm font-bold tracking-widest uppercase"
