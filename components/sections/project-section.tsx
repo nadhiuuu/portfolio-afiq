@@ -43,8 +43,6 @@ export default function PortfolioSection() {
 
   return (
     <section className="relative min-h-screen w-full bg-[#05010a] text-white py-24 px-4 sm:px-10 overflow-hidden -mt-16 md:-mt-15">
-      
-      {/* Background */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <div className="absolute top-0 inset-x-0 h-40 bg-gradient-to-b from-[#05010a] via-[#05010a]/80 to-transparent z-10" />
         <div className="absolute inset-0 opacity-[0.03] 
@@ -52,10 +50,7 @@ export default function PortfolioSection() {
           [background-size:60px_60px]" 
         />
       </div>
-
       <div className="relative z-10 max-w-[1400px] mx-auto">
-        
-        {/* FIXED HEADING */}
         <div className="mb-16">
           <motion.h2
             initial={{ opacity: 0 }}
@@ -64,7 +59,6 @@ export default function PortfolioSection() {
           >
             Selected Works
           </motion.h2>
-
           <motion.h3
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -73,8 +67,6 @@ export default function PortfolioSection() {
             Design <span className="text-cyan-400">Project</span>
           </motion.h3>
         </div>
-
-        {/* Grid */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 md:gap-4 auto-rows-[200px] md:auto-rows-[280px]">
           {projects.map((p, i) => (
             <motion.div
@@ -98,12 +90,9 @@ export default function PortfolioSection() {
           ))}
         </div>
       </div>
-
-      {/* Lightbox */}
       <AnimatePresence>
         {selectedImg && (
           <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-10">
-            
             <motion.div 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -111,7 +100,6 @@ export default function PortfolioSection() {
               onClick={() => setSelectedImg(null)}
               className="absolute inset-0 cursor-zoom-out"
             />
-
             <motion.div 
               layoutId={`card-${selectedImg}`}
               className="relative z-10 max-w-full max-h-full flex items-center justify-center"
@@ -121,7 +109,6 @@ export default function PortfolioSection() {
                 alt="Full Preview"
                 className="rounded-lg shadow-2xl border border-white/10 object-contain max-h-[90svh]"
               />
-              
               <button 
                 onClick={() => setSelectedImg(null)}
                 className="absolute -top-12 right-0 text-white/50 hover:text-white text-sm font-bold tracking-widest uppercase"

@@ -49,8 +49,6 @@ export default function ContactSection() {
 
   return (
     <section className="relative min-h-[80vh] md:min-h-screen w-full bg-[#05010a] text-white flex flex-col items-center justify-center overflow-hidden -mt-1px py-20 md:py-0">
-
-      {/* === Background & Grid Sync === */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <div className="absolute top-0 inset-x-0 h-40 bg-gradient-to-b from-[#05010a] via-[#05010a]/90 to-transparent z-10" />
         <div className="absolute inset-0 opacity-[0.03]
@@ -60,10 +58,7 @@ export default function ContactSection() {
         <div className="absolute top-[20%] left-[-10%] w-[80vw] md:w-[60vw] h-[80vw] md:h-[60vw] bg-cyan-500/5 blur-[100px] md:blur-[140px] rounded-full" />
         <div className="absolute bottom-[10%] right-[-10%] w-[70vw] md:w-[50vw] h-[70vw] md:h-[50vw] bg-fuchsia-600/5 blur-[100px] md:blur-[140px] rounded-full" />
       </div>
-
       <div className="relative z-20 max-w-5xl mx-auto px-6 flex flex-col items-center text-center">
-        
-        {/* Header Section */}
         <div className="mb-10 md:mb-16 flex flex-col items-center">
           <motion.p 
             initial={{ opacity: 0 }}
@@ -72,7 +67,6 @@ export default function ContactSection() {
           >
             Ready for your next project?
           </motion.p>
-
           <motion.h3
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -84,8 +78,6 @@ export default function ContactSection() {
             </span>
           </motion.h3>
         </div>
-
-        {/* Social Links Grid: 1 kolom di mobile, 3 di desktop */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-4 w-full max-w-2xl px-4 sm:px-0">
           {socialLinks.map((social, i) => (
             <motion.a
@@ -107,8 +99,6 @@ export default function ContactSection() {
           ))}
         </div>
       </div>
-
-      {/* Footer: Stacked di mobile, Row di desktop */}
       <div className="absolute bottom-6 md:bottom-8 w-full px-6 md:px-10 flex flex-col md:flex-row justify-between items-center gap-4 md:gap-3 opacity-30 text-[8px] md:text-[9px] font-bold tracking-[0.2em] md:tracking-[0.3em] uppercase border-t border-white/5 pt-6 md:pt-8">
         <p>© 2026 AFIQ ILHAM</p>
         <div className="flex gap-4 italic">

@@ -4,27 +4,16 @@ import { motion } from "framer-motion";
 export default function AboutSection() {
   return (
     <section className="relative min-h-screen w-full overflow-hidden bg-[#05010a] text-white flex items-center">
-      
-      {/* === Background Decor === */}
       <div className="absolute inset-0 z-0">
-        {/* Top Fade Transition */}
         <div className="absolute top-0 inset-x-0 h-40 bg-gradient-to-b from-[#05010a] to-transparent z-10" />
-
-        {/* Ambient Glows */}
         <div className="absolute top-[-10%] left-[-5%] w-[50vw] h-[50vw] bg-cyan-500/5 blur-[120px] rounded-full" />
         <div className="absolute bottom-[10%] right-[-5%] w-[40vw] h-[40vw] bg-fuchsia-600/5 blur-[120px] rounded-full" />
-        
-        {/* Modern Grid Texture */}
         <div className="absolute inset-0 opacity-[0.03] 
           [background-image:linear-gradient(#333_1px,transparent_1px),linear-gradient(90deg,#333_1px,transparent_1px)] 
           [background-size:80px_80px]" 
         />
       </div>
-
-      {/* === Content Area === */}
       <div className="relative z-10 max-w-6xl mx-auto px-6 py-32 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-        
-        {/* Headline Section */}
         <motion.div
           initial={{ opacity: 0, x: -40 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -36,8 +25,6 @@ export default function AboutSection() {
           </h2>
           <div className="w-24 h-[4px] bg-gradient-to-r from-cyan-500 to-fuchsia-600 rounded-full" />
         </motion.div>
-
-        {/* Narrative Section */}
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -58,8 +45,6 @@ export default function AboutSection() {
               </p>
             </div>
           </div>
-
-          {/* Tools Grid */}
           <div className="pt-8 border-t border-white/5">
             <h3 className="text-[10px] font-bold uppercase tracking-[0.4em] text-gray-500 mb-6">
               Expertise In
@@ -78,7 +63,6 @@ export default function AboutSection() {
           </div>
         </motion.div>
       </div>
-
     </section>
   );
 }
